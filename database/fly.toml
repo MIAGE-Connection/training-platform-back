@@ -1,0 +1,23 @@
+app = "mc-training-platform-db"
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+[mounts]
+source="mc_training_platform_data"
+destination="/data"
+
+[env]
+MYSQL_DATABASE = "mc_formation"
+MYSQL_USER = "formation"
+
+[build]
+image = "mysql:8"
+
+[experimental]
+cmd = [
+    "--default-authentication-plugin",
+    "mysql_native_password",
+    "--performance-schema=OFF",
+    "--datadir",
+    "/data/mysql"
+]
